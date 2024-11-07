@@ -1,0 +1,21 @@
+{
+    "train_batch_size": 4,                // batch_size，必须等于 train_micro_batch_size_per_gpu * gradient_accumulation_steps * GPU数，且和训练代码中设置相同
+    "train_micro_batch_size_per_gpu": 1,  // 每个GPU上micro_batch的数量
+    "gradient_accumulation_steps": 1,     // 梯度累积多少个batch同步一次
+    
+    // 设置使用ZeRO-3优化
+    "zero_allow_untested_optimizer": true,
+    "zero_optimization":{
+        "stage": 3
+    },
+    
+    // 配置优化器
+    "optimizer": {
+        "type": "Adam",
+        "params": {
+            "lr": 1e-4,
+            "betas": [0.9, 0.999],
+            "eps": 1e-8
+        }
+    } 
+}
